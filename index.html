@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ပဲနီပြား</title>
+<style>
+:root{--bg:#f4f5f7;--card:#fff;--text:#1c1e21;--muted:#6b7280;--accent:#2563eb;--border:#d9dce1;--res:#eef4ff;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#15171a;--card:#1f2226;--text:#e8eaed;--muted:#9aa0a6;--accent:#6ea0ff;--border:#34383e;--res:#232b3a}}
+:root[data-theme="dark"]{--bg:#15171a;--card:#1f2226;--text:#e8eaed;--muted:#9aa0a6;--accent:#6ea0ff;--border:#34383e;--res:#232b3a}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Noto Sans Myanmar","Myanmar Text",sans-serif;line-height:1.6}
+main{max-width:480px;margin:0 auto;padding:20px 16px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;margin-bottom:18px}
+h2{margin:0 0 4px;font-size:1.1rem}
+p.d{margin:0 0 12px;color:var(--muted);font-size:.9rem}
+input{width:100%;font-size:1.1rem;padding:10px 12px;border:1px solid var(--border);border-radius:10px;background:var(--bg);color:var(--text)}
+button{margin-top:10px;width:100%;font-size:1rem;padding:10px;border:0;border-radius:10px;background:var(--accent);color:#fff;cursor:pointer}
+.r{margin-top:10px;padding:10px 12px;border-radius:10px;background:var(--res)}
+.r small{display:block;color:var(--muted)}
+.r b{font-size:1.25rem;word-break:break-all}
+</style>
+</head>
+<body>
+<main>
+<h1 style="text-align:center;margin:0 0 16px;font-size:1.5rem">ပဲနီပြား</h1>
+<section class="card">
+<h2>တွက်စက် ၁</h2>
+<p class="d">ကိန်း ÷ 57.5 × 30 → အဖြေ ၁၊ ထို့နောက် + 10000 → အဖြေ ၂</p>
+<input id="a" type="number" inputmode="decimal" step="any" placeholder="ကိန်းထည့်ပါ">
+<button id="ba">တွက်မည်</button>
+<div class="r"><small>အဖြေ ၁ (÷ 57.5 × 30)</small><b id="a1">-</b></div>
+<div class="r"><small>အဖြေ ၂ (+ 10000)</small><b id="a2">-</b></div>
+</section>
+<section class="card">
+<h2>တွက်စက် ၂</h2>
+<p class="d">ကိန်း ÷ 48 → အဖြေ</p>
+<input id="b" type="number" inputmode="decimal" step="any" placeholder="ကိန်းထည့်ပါ">
+<button id="bb">တွက်မည်</button>
+<div class="r"><small>အဖြေ (÷ 48)</small><b id="b1">-</b></div>
+</section>
+</main>
+<script>
+function f(x){return x.toLocaleString('en-US',{maximumFractionDigits:4})}
+function val(id){var v=document.getElementById(id).value;return v===''?null:parseFloat(v)}
+function c1(){var n=val('a');if(n===null||isNaN(n)){a1.textContent=a2.textContent='ကိန်းထည့်ပါ';return}
+var r=n/57.5*30;a1.textContent=f(r);a2.textContent=f(r+10000)}
+function c2(){var n=val('b');if(n===null||isNaN(n)){b1.textContent='ကိန်းထည့်ပါ';return}
+b1.textContent=f(n/48)}
+ba.onclick=c1;bb.onclick=c2;
+a.addEventListener('keydown',function(e){if(e.key==='Enter')c1()});
+b.addEventListener('keydown',function(e){if(e.key==='Enter')c2()});
+</script>
+</body>
+</html>
